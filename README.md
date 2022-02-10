@@ -18,13 +18,13 @@ The main functionality which needs to be implemented in the game is to enable th
 
 ### Technology
 ##### Game development
-• Operating System: Windows/Mac OS
-• Tools: Unity / Visual studio, Visual studio code.
-• Frameworks: Android SDK/NDK, OSVR SDK, Google VR cardboard.
-• Language: C# / C++ / Python
+* Operating System: Windows/Mac OS
+* Tools: Unity / Visual studio, Visual studio code
+* Frameworks: Android SDK/NDK, OSVR SDK, Google VR cardboard
+* Language: C# / C++ / Python
 
 ##### Back-end development
-• Operating System: Windows/Mac OS
-• Tools: Visual Studio code, Visual studio.
-• Frameworks: .Net Core / Firebase
-• Database: MySQL, Redis, Mong
+* Operating System: Windows/Mac OS
+* Tools: Visual Studio code, Visual studio
+* Frameworks: .Net Core / Firebase
+* Database: MySQL, Redis, Mong
