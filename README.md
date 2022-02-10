@@ -30,4 +30,4 @@ The main functionality which needs to be implemented in the game is to enable th
 * Database: MySQL, Redis, Mong
 
 #### Task scheduling
-The tasks are planned in a sprints and all the sprint management is done on ** Jira **.
+The tasks are planned in a sprints and all the sprint management is done on **Jira**.
