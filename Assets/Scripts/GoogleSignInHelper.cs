@@ -13,7 +13,9 @@
 //  See the License for the specific language governing permissions and
 //  limitations
 
+using Firebase.Auth;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 namespace SignInSample {
   using System;
@@ -32,7 +34,7 @@ namespace SignInSample {
 
     private GoogleSignInConfiguration configuration;
 
-    public static string AccessToken = "";
+    public static string IdToken = "";
 
     // Defer the configuration creation until Awake so the web Client ID
     // Can be set via the property inspector in the Editor.
@@ -88,19 +90,38 @@ namespace SignInSample {
       } 
       else
       {
-        AccessToken = task.Result.IdToken;
+        IdToken = task.Result.IdToken;
         userName.text = "Welcome: " + task.Result.DisplayName + " !";
         loginText.text = "Logout";
         
         loginButton.onClick.RemoveAllListeners();
         loginButton.onClick.AddListener(OnSignOut);
-        AddStatusText("Welcome: " + task.Result.DisplayName + "!");
+
+        Credential credential = GoogleAuthProvider.GetCredential(IdToken, null);
+        
+        FirebaseManager.Auth.SignInWithCredentialAsync(credential).ContinueWith(authTask => {
+          if (authTask.IsCanceled) {
+            Debug.LogError("SignInWithCredentialAsync was canceled.");
+            return;
+          }
+          if (authTask.IsFaulted) {
+            Debug.LogError("SignInWithCredentialAsync encountered an error: " + authTask.Exception);
+            return;
+          }
+
+          FirebaseManager.CurrentUser = authTask.Result;
+          
+          FirebaseManager.Instance.GetUserScore();
+          
+          Debug.LogFormat("User signed in successfully: {0} ({1})",
+            FirebaseManager.CurrentUser.DisplayName, FirebaseManager.CurrentUser.UserId);
+        });
       }
     }
 
     public void ChangeScene()
     {
-      
+      SceneManager.LoadScene("StartingPoint");
     }
 
     public void OnSignInSilently() {

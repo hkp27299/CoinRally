@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "800556442057",
+    "firebase_url": "https://coinrally-9fefe-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "coinrally-9fefe",
+    "storage_bucket": "coinrally-9fefe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800556442057:android:6af23570e13819b97c4818",
+        "android_client_info": {
+          "package_name": "com.coinrally.game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800556442057-g6cvecet7uomoqk7ks014qg4dbmi2pke.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.coinrally.game",
+            "certificate_hash": "683550984b1cf06c77a56454886fdd73e86d7d9d"
+          }
+        },
+        {
+          "client_id": "800556442057-h4arkcm5n4gg9q64ga11v5vjb3m0tr04.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3b3XfPI17OqOQSNEFQJbNw2jgaHx1TdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800556442057-h4arkcm5n4gg9q64ga11v5vjb3m0tr04.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
