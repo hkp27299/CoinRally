@@ -12,6 +12,7 @@ public class FirebaseManager : MonoBehaviour
     private FirebaseUser user;
     private FirebaseDatabase db;
 
+    private string SHA_keystore = "68:35:50:98:4B:1C:F0:6C:77:A5:64:54:88:6F:DD:73:E8:6D:7D:9D";
 
     public FirebaseApp App
     {
