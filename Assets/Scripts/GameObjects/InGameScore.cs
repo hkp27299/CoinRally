@@ -9,7 +9,7 @@ public class InGameScore : MonoBehaviour
 
     public void UpdateScoreTXT(float score)
     {
-        textMesh.text = "Coin :"+score.ToString();
+        textMesh.text = "Coins : "+score.ToString();
     }
 
 }

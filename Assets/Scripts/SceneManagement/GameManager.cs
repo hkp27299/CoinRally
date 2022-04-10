@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     public CarMovement car;
     public RoadBehavior roadBehavior;
-
+    public GameObject[] carModels;
     public GameObstacle gameObstaclePrefab;
     public GamePoint gamePointPrefab;
 
@@ -46,10 +46,17 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore",0);            
         }
+        foreach (GameObject obj in carModels){
+            obj.SetActive(false);
+        }
+        new WaitForSeconds(1f);
+        carModels[CarModelSelection.selectedCarModelCount].SetActive(true);
+        car = carModels[CarModelSelection.selectedCarModelCount].GetComponent<CarMovement>();
+        FindObjectOfType<SoundManager>().attach(carModels[CarModelSelection.selectedCarModelCount]);
         inGameScoreScreen.gameObject.SetActive(true);
         StartCoroutine(CarVoice());
         roadBehavior.roadSpeed = roadSpeed;
-        car.roadXScale = roadBehavior.transform.localScale.z - 3.8f;
+        car.roadXScale = roadBehavior.transform.localScale.z - 4f;
         car.turnSpeed = carTurningSpeed;
         StartCoroutine(SpawnObjectsRoutine());
         scoreText.text = $"High Score: {PlayerPrefs.GetInt("HighScore")}";
@@ -61,11 +68,53 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+    public async void OpenLeaderBoards()
+    {
+        mainCanvas.gameObject.SetActive(false);
+        leaderboardCanvas.gameObject.SetActive(true);
+        
+        leaderBoardBox = leaderboardContent.GetChild(1).gameObject;
+        leaderboardContent.GetChild(1).gameObject.SetActive(false);
+
+        var allData = await FirebaseManager.Instance.GetAllUserLeaderBoards();
+        if (allData == null)
+        {
+            Debug.Log("all data is null");
+            return;
+        }
+        Debug.Log("All Data" + JsonUtility.ToJson(allData));
 
 
+        foreach (var data in allData)
+        {
+            GameObject box = Instantiate(leaderBoardBox, leaderboardContent);
+            box.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = data.Key;
+            box.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = data.Value.ToString();
+            box.SetActive(true);
+        }
+
+        for (int i = 2; i < leaderboardContent.childCount; i++)
+        {
+            leaderboardContent.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = (i - 1).ToString();
+        }
+    }
+
+    public void CloseLeaderboards()
+    {
+        mainCanvas.gameObject.SetActive(true);
+        leaderboardCanvas.gameObject.SetActive(false);
+        
+        for (int i = 2; i < leaderboardContent.childCount; i++)
+        {
+            Destroy(leaderboardContent.GetChild(i).gameObject);
+        }
+    }
+    
     public void GameOver()
     {
         roadBehavior.roadSpeed = 0;
+        roadBehavior.sideSpeed = 0;
+        car.turnSpeed=0;
         inGameScoreScreen.gameObject.SetActive(false);
         StopAllCoroutines();
         FindObjectOfType<SoundManager>().Stop("CarVoice");
@@ -105,7 +154,16 @@ public class GameManager : MonoBehaviour
         score += 1;
         inGameScoreScreen.UpdateScoreTXT(score);
         if(score%10==0){
-            roadBehavior.roadSpeed +=1.1f*(roadBehavior.roadSpeed);
+            roadBehavior.roadSpeed +=1.02f*(roadBehavior.roadSpeed);
+            roadBehavior.sideSpeed +=1.02f*(roadBehavior.sideSpeed);
+            foreach(GameObject active in activeObjects){
+                if(active.GetComponent<GameObstacle>()!=null){
+                    active.GetComponent<GameObstacle>().updateSpeed();
+                }
+                else if(active.GetComponent<GamePoint>()!=null){
+                    active.GetComponent<GamePoint>().updateSpeed();
+                }
+            }
         }
         
     }

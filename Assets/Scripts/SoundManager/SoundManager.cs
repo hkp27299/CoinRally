@@ -26,8 +26,16 @@ public class SoundManager : MonoBehaviour
             sound.source.spatialBlend = sound.spatialBlend;
         }
     }
-
-
+    public void attach(GameObject obj){
+        foreach (Sound sound in sounds)
+        {
+            sound.source = obj.AddComponent<AudioSource>();
+            sound.source.clip = sound.clip;
+            sound.source.volume = sound.volume;
+            sound.source.pitch = sound.pitch;
+            sound.source.spatialBlend = sound.spatialBlend;
+        }
+    }
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);

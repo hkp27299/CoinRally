@@ -1743,6 +1743,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   interactionDelay: 3
+  triggerActive: 1
 --- !u!1 &2144228703
 GameObject:
   m_ObjectHideFlags: 0
