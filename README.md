@@ -29,5 +29,18 @@ The main functionality which needs to be implemented in the game is to enable th
 * Frameworks: .Net Core / Firebase
 * Database: MySQL, Redis, Mong
 
+#### Game User Interface 
+1. Login screen - using google authentication
+<img width="755" alt="Screen Shot 2022-04-10 at 4 47 00 PM" src="https://user-images.githubusercontent.com/35221403/163067448-13eec682-23b0-41e8-9e4e-3358c9ebd1f0.png">
+
+2. Main screen with different features
+<img width="755" alt="Screen Shot 2022-04-10 at 4 48 55 PM" src="https://user-images.githubusercontent.com/35221403/163067553-de208af4-0bea-464c-a0de-0f8fde59e97e.png">
+
+4. Game play
+<img width="757" alt="Screen Shot 2022-04-10 at 4 49 29 PM" src="https://user-images.githubusercontent.com/35221403/163067561-4864a0db-b4cb-48a8-b64d-cf461b64d80a.png">
+
+5. Car skin selection
+<img width="756" alt="Screen Shot 2022-04-10 at 4 48 33 PM" src="https://user-images.githubusercontent.com/35221403/163067590-5cab7ac7-80cc-4759-bf51-bb8650e936a1.png">
+
 #### Task scheduling
 The tasks are planned in a sprints and all the sprint management is done on **Jira**.
